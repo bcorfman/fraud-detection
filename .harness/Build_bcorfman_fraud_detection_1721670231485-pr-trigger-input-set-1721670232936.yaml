@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_bcorfman_fraud_detection_1721670231485-pr-trigger-input-set
+  identifier: Build_bcorfman_fraud_detection_1721670231485prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: fraud_detection
+  pipeline:
+    identifier: Build_bcorfman_fraud_detection_1721670231485
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
