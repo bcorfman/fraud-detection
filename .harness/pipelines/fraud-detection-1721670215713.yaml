@@ -12,7 +12,7 @@ pipeline:
   stages:
     - stage:
         identifier: build
-        name: build
+        name: data-ingestion
         spec:
           cloneCodebase: true
           execution:
@@ -25,9 +25,13 @@ pipeline:
                   timeout: ""
                   type: Run
           platform:
-            arch: Amd64
             os: Linux
+            arch: Amd64
           runtime:
-            spec: {}
             type: Cloud
+            spec: {}
+          caching:
+            enabled: false
+            paths: []
         type: CI
+        description: ""
