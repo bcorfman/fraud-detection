@@ -1,0 +1,27 @@
+[project]
+name = "fraud-detection"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "Brandon Corfman", email = "bcorfman@fastmail.fm" }
+]
+dependencies = [
+    "mlrun==1.6.4",
+    "pandas==2.1",
+]
+readme = "README.md"
+requires-python = ">= 3.9"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fraud_detection"]
