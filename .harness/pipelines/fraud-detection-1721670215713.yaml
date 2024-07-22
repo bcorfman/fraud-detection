@@ -18,12 +18,32 @@ pipeline:
           execution:
             steps:
               - step:
-                  identifier: echo
-                  name: echo
-                  spec:
-                    command: echo hello world
-                  timeout: ""
                   type: Run
+                  name: read_data
+                  identifier: read_data
+                  spec:
+                    shell: Python
+                    command: |
+                      import pandas as pd
+
+                      # Fetch the transactions dataset from the server
+                      transactions_data = pd.read_csv(
+                          "https://s3.wasabisys.com/iguazio/data/fraud-demo-mlrun-fs-docs/data.csv",
+                          parse_dates=["timestamp"],
+                      )
+
+                      # use only first 50k
+                      transactions_data = transactions_data.sort_values(by="source", axis=0)[:10000]
+
+                      # Adjust the samples timestamp for the past 2 days
+                      transactions_data = adjust_data_timespan(transactions_data, new_period="2d")
+
+                      # Sorting after adjusting timestamps
+                      transactions_data = transactions_data.sort_values(by="timestamp", axis=0)
+
+                      # Preview
+                      transactions_data.head(3)
+                  description: Pulls into Pandas DataFrame
           platform:
             os: Linux
             arch: Amd64
