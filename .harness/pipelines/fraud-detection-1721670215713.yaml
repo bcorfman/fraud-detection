@@ -1,0 +1,33 @@
+pipeline:
+  identifier: Build_bcorfman_fraud_detection_1721670231485
+  name: Build fraud-detection
+  orgIdentifier: default
+  projectIdentifier: fraud_detection
+  properties:
+    ci:
+      codebase:
+        build: <+input>
+        connectorRef: account.Github
+        repoName: bcorfman/fraud-detection
+  stages:
+    - stage:
+        identifier: build
+        name: build
+        spec:
+          cloneCodebase: true
+          execution:
+            steps:
+              - step:
+                  identifier: echo
+                  name: echo
+                  spec:
+                    command: echo hello world
+                  timeout: ""
+                  type: Run
+          platform:
+            arch: Amd64
+            os: Linux
+          runtime:
+            spec: {}
+            type: Cloud
+        type: CI
